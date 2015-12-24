@@ -44,7 +44,7 @@ Please make sure `dev` is the *active Machine* before proceding.
 
 ## Running docker-compose
 
-Once docker is up and running on your machine, you can start your dev environment by telling the composer to run the `docker-compose.yml` file. Grab a cup of coffee and run the following:
+Once docker is up and running on your machine, you can start your dev environment by telling the composer to run the [`docker-compose.yml` file][compose-file]. Grab a cup of coffee and run the following:
 
 ```
 docker-compose up 
@@ -56,3 +56,4 @@ And that's it. Congratulations on getting your local env ready for some developi
 
 
 [setup]: https://docs.docker.com/machine/get-started/
+[compose-file]: https://docs.docker.com/compose/compose-file/
