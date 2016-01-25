@@ -1,8 +1,12 @@
 # composer
-A docker-compose for your local env
+It's dangerous to go alone! Here's a reliable `docker-compose` for your local env setup to help you on your Backend adventure.
+
+![zelda-nyan](http://i1.kym-cdn.com/photos/images/original/000/402/521/a01.png "something something")
 
 
 ## Setup
+
+Composer uses docker with sugar, spice and everything that's nice.
 
 ### Prerequisites
 
