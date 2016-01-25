@@ -2,7 +2,13 @@
 A docker-compose for your local env
 
 
-## Installing docker-compose
+## Setup
+
+### Prerequisites
+
+On OS X, Docker's `docker-machine` component requires VirtualBox up and running locally. You can **[download and install VBox][vbox-setup]** from Oracle's site. While you're at it, please make sure you also **install the VBox extensions package**.
+
+### Installing `docker-compose`
 
 You can [set up docker-machine][setup] along with docker and docker-compose easily via homebrew:
 
@@ -47,7 +53,7 @@ Please make sure `dev` is the *active Machine* before proceding.
 Once docker is up and running on your machine, you can start your dev environment by telling the composer to run the [`docker-compose.yml` file][compose-file]. Grab a cup of coffee and run the following:
 
 ```
-docker-compose up 
+docker-compose up
 ```
 
 This will build new images for the RabbitMQ, MongoDB and Redis services and then each process in new containers. Keep in mind, the first time this is run could take a while however, subsequent builds run much quicker since Docker caches the results.
@@ -57,3 +63,4 @@ And that's it. Congratulations on getting your local env ready for some developi
 
 [setup]: https://docs.docker.com/machine/get-started/
 [compose-file]: https://docs.docker.com/compose/compose-file/
+[vbox-setup]: https://www.virtualbox.org/wiki/Downloads
