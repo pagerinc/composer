@@ -65,6 +65,18 @@ This will build new images for the RabbitMQ, MongoDB and Redis services and then
 And that's it. Congratulations on getting your local env ready for some developing.
 
 
+### Running daemonized
+
+If you don't want to block your io and you're not a big fan of Tmux, you can easily run a daemonized version of docker-compose via the `-d` flag:
+
+```
+docker-compose up -d
+$ ./run_tests
+$ docker-compose stop
+$ docker-compose rm -f
+```
+
+
 [setup]: https://docs.docker.com/machine/get-started/
 [compose-file]: https://docs.docker.com/compose/compose-file/
 [vbox-setup]: https://www.virtualbox.org/wiki/Downloads
