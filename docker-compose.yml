@@ -11,3 +11,10 @@ rabbitmq:
   ports:
     - "5672:5672"
     - "15672:15672"
+postgres:
+  image: postgres:latest
+  ports:
+    - "5432:5432"
+  environment:
+    LC_ALL: C.UTF-8
+    POSTGRES_PASSWORD: pager-r0cks
