@@ -1,20 +1,23 @@
-redis:
-  image: redis:latest
-  ports:
-    - "6379:6379"
-mongo:
-  image: mongo:latest
-  ports:
-    - "27017:27017"
-rabbitmq:
-  image: rabbitmq:3-management
-  ports:
-    - "5672:5672"
-    - "15672:15672"
-postgres:
-  image: postgres:latest
-  ports:
-    - "5432:5432"
-  environment:
-    LC_ALL: C.UTF-8
-    POSTGRES_PASSWORD: pager-r0cks
+version: '2'
+
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  postgres:
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      LC_ALL: C.UTF-8
+      POSTGRES_PASSWORD:

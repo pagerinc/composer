@@ -24,6 +24,7 @@ brew install homebrew/completions/docker-completion
 Once docker is up and running on your machine, you can start your dev environment by telling the composer to run the [`docker-compose.yml` file][compose-file]. Grab a cup of coffee and run the following:
 
 ```
+export POSTGRES_PASSWORD='pag3r-r0cks'
 docker-compose up
 ```
 
