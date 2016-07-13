@@ -45,5 +45,16 @@ $ docker-compose rm -f
 ```
 
 
+### Linking containers
+
+`docker-compose` defaults to a `compose_default` bridged network on your system, in order to link to these containers you can:
+
+ - add `--net=compose_default` to the `docker run` command (fresh container)
+ - run `docker network connect compose_default my-container` (existing container)
+
+See [this article][linking] for details.
+
 [compose-file]: https://docs.docker.com/compose/compose-file/
 [docker-mac]: https://www.docker.com/products/docker#/mac
+[linking]: http://blog.csainty.com/2016/07/connecting-docker-containers.html
+
