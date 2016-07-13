@@ -6,50 +6,17 @@ It's dangerous to go alone! Here's a reliable `docker-compose` for your local en
 
 ## Setup
 
-Composer uses docker with sugar, spice and everything that's nice.
+Composer is leverages Docker with sugar, spice and everything that's nice.
 
-### Prerequisites
+Download and install [Docker for Mac][docker-mac].
 
-On OS X, Docker's `docker-machine` component requires VirtualBox up and running locally. You can **[download and install VBox][vbox-setup]** from Oracle's site. While you're at it, please make sure you also **install the VBox extensions package**.
-
-### Installing `docker-compose`
-
-You can [set up docker-machine][setup] along with docker and docker-compose easily via homebrew:
+**Optional**: install the following taps for shell completion:
 
 ```bash
-brew update && brew install docker docker-machine docker-compose
+brew update &&\
+brew tap homebrew/completions &&\
+brew install homebrew/completions/docker-completion
 ```
-
-This will leave you with versions `0.5.1`, `1.9.1` and `1.5.2` of `docker-machine`, `docker` and `docker-compose` respectively. You can check this via the `--version` flag on each command. eg:
-
-```bash
-docker-machine --version 
-# should print docker-machine version 0.5.1 (HEAD)
-```
-
-Now it's time to create a dev machine. You can achieve this by running
-
-```bash
-docker-machine create --driver virtualbox dev
-```
-
-This command, `create`, sets up a new "Machine" (called `dev`) for local Docker development. Now we just need to point Docker at this specific Machine:
-
-```bash
-eval "$(docker-machine env dev)"
-```
-
-You can list your available Machines at any time by running:
-
-```bash
-docker-machine ls
-
-NAME      ACTIVE   DRIVER       STATE     URL                         SWARM
-default   -        virtualbox   Running   tcp://192.168.99.100:2376
-dev       *        virtualbox   Running   tcp://192.168.99.102:2376
-```
-
-Please make sure `dev` is the *active Machine* before proceding.
 
 
 ## Running docker-compose
@@ -77,6 +44,5 @@ $ docker-compose rm -f
 ```
 
 
-[setup]: https://docs.docker.com/machine/get-started/
 [compose-file]: https://docs.docker.com/compose/compose-file/
-[vbox-setup]: https://www.virtualbox.org/wiki/Downloads
+[docker-mac]: https://www.docker.com/products/docker#/mac
