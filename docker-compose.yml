@@ -2,7 +2,7 @@ version: '2'
 
 services:
   redis:
-    image: redis:latest
+    image: redis:3-alpine
     ports:
       - "6379:6379"
   mongo:
