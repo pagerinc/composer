@@ -3,7 +3,6 @@ It's dangerous to go alone! Here's a reliable `docker-compose` for your local en
 
 ![zelda-nyan](http://i1.kym-cdn.com/photos/images/original/000/402/521/a01.png "something something")
 
-
 ## Setup
 
 Composer is leverages Docker with sugar, spice and everything that's nice.
@@ -18,7 +17,6 @@ brew tap homebrew/completions &&\
 brew install homebrew/completions/docker-completion
 ```
 
-
 ## Running docker-compose
 
 Once docker is up and running on your machine, you can start your dev environment by telling the composer to run the [`docker-compose.yml` file][compose-file]. Grab a cup of coffee and run the following:
@@ -32,7 +30,6 @@ This will build new images for the RabbitMQ, MongoDB and Redis services and then
 
 And that's it. Congratulations on getting your local env ready for some developing.
 
-
 ### Running daemonized
 
 If you don't want to block your io and you're not a big fan of Tmux, you can easily run a daemonized version of docker-compose via the `-d` flag:
@@ -44,7 +41,6 @@ $ docker-compose stop
 $ docker-compose rm -f
 ```
 
-
 ### Linking containers
 
 `docker-compose` defaults to a `compose_default` bridged network on your system, in order to link to these containers you can:
@@ -54,7 +50,12 @@ $ docker-compose rm -f
 
 See [this article][linking] for details.
 
+## Running Kong
+
+```bash
+docker-compose up -f kong.yaml
+```
+
 [compose-file]: https://docs.docker.com/compose/compose-file/
 [docker-mac]: https://www.docker.com/products/docker#/mac
 [linking]: http://blog.csainty.com/2016/07/connecting-docker-containers.html
-
