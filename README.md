@@ -53,8 +53,11 @@ See [this article][linking] for details.
 ## Running Kong
 
 ```bash
-docker-compose up -f kong.yaml
+docker-compose -f kong.yaml up
 ```
+
+Hit [http://localhost.me]() for the proxy,
+[localhost:8001](http://localhost:8001) for the admin API.
 
 [compose-file]: https://docs.docker.com/compose/compose-file/
 [docker-mac]: https://www.docker.com/products/docker#/mac
