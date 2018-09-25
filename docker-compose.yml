@@ -1,23 +1,25 @@
-version: '2'
+version: '3'
 
 services:
   redis:
-    image: redis:3-alpine
+    image: redis:4-alpine
     ports:
       - "6379:6379"
   mongo:
-    image: mongo:latest
+    image: mongo:3.6
     ports:
       - "27017:27017"
   rabbitmq:
-    image: rabbitmq:3.6-management
+    image: rabbitmq:3.7-management-alpine
     ports:
       - "5672:5672"
       - "15672:15672"
   postgres:
-    image: postgres:latest
+    image: postgres:9.6-alpine
     ports:
       - "5432:5432"
     environment:
       LC_ALL: C.UTF-8
-      POSTGRES_PASSWORD:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: CHANGEME
+      POSTGRES_DB: db
