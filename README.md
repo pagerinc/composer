@@ -5,9 +5,9 @@ It's dangerous to go alone! Here's a reliable `docker-compose` to help you on yo
 
 ## Setup
 
-Composer is leverages Docker with sugar, spice and everything that's nice.
+Composer leverages Docker with sugar, spice and everything that's nice.
 
-Clone and install [Pager's dotfiles][dotfiles] (recommended) or [Docker for Mac][docker-mac].
+Clone and install **[Pager's dotfiles][dotfiles]** (recommended) or [Docker for Mac][docker-mac].
 
 > **NOTE**: if you're not using the `dotfiles` repo, you might want to install 
 > the following for shell completion.
@@ -34,9 +34,10 @@ If you don't want to block your io and you're not a big fan of Tmux, you can eas
 
 ```
 docker-compose up -d
-$ ./run_tests
-$ docker-compose stop
-$ docker-compose rm -f
+
+./run_tests
+docker-compose stop
+docker-compose rm -f
 ```
 
 ### Linking containers
