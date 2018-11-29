@@ -1,5 +1,5 @@
 # composer
-It's dangerous to go alone! Here's a reliable `docker-compose` for your local env setup to help you on your Backend adventure.
+It's dangerous to go alone! Here's a reliable `docker-compose` to help you on your Backend adventures.
 
 ![zelda-nyan](http://i1.kym-cdn.com/photos/images/original/000/402/521/a01.png "something something")
 
@@ -7,14 +7,13 @@ It's dangerous to go alone! Here's a reliable `docker-compose` for your local en
 
 Composer is leverages Docker with sugar, spice and everything that's nice.
 
-Download and install [Docker for Mac][docker-mac].
+Clone and install [Pager's dotfiles][dotfiles] (recommended) or [Docker for Mac][docker-mac].
 
-**Optional**: install the following taps for shell completion:
+> **NOTE**: if you're not using the `dotfiles` repo, you might want to install 
+> the following for shell completion.
 
 ```bash
-brew update &&\
-brew tap homebrew/completions &&\
-brew install homebrew/completions/docker-completion
+brew install docker-completion
 ```
 
 ## Running docker-compose
@@ -22,7 +21,6 @@ brew install homebrew/completions/docker-completion
 Once docker is up and running on your machine, you can start your dev environment by telling the composer to run the [`docker-compose.yml` file][compose-file]. Grab a cup of coffee and run the following:
 
 ```
-export POSTGRES_PASSWORD='pag3r-r0cks'
 docker-compose up
 ```
 
@@ -60,5 +58,6 @@ Hit [http://localhost.me]() for the proxy,
 [localhost:8001](http://localhost:8001) for the admin API.
 
 [compose-file]: https://docs.docker.com/compose/compose-file/
+[dotfiles]: https://github.com/pagerinc/dotfiles
 [docker-mac]: https://www.docker.com/products/docker#/mac
 [linking]: http://blog.csainty.com/2016/07/connecting-docker-containers.html
