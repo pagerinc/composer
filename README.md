@@ -28,7 +28,7 @@ This will build new images for the RabbitMQ, MongoDB and Redis services and then
 
 And that's it. Congratulations on getting your local env ready for some developing.
 
-Please note that when you run a service locally, RABBIT_URL should be "amqp://localhost/db".
+Please note that when you run a service locally, RABBIT_URL should be "amqp://localhost:5672/db".
 
 ### Running daemonized
 
