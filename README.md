@@ -28,6 +28,8 @@ This will build new images for the RabbitMQ, MongoDB and Redis services and then
 
 And that's it. Congratulations on getting your local env ready for some developing.
 
+Please note that when you run a service locally, RABBIT_URL should be "amqp://localhost:5672/db".
+
 ### Running daemonized
 
 If you don't want to block your io and you're not a big fan of Tmux, you can easily run a daemonized version of docker-compose via the `-d` flag:
