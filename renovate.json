@@ -1,5 +1,5 @@
 {
   "extends": [
-    "gihub>pagerinc/infra-renovate-config"
+    "github>pagerinc/infra-renovate-config"
   ]
 }
