@@ -9,7 +9,7 @@ Composer leverages Docker with sugar, spice and everything that's nice.
 
 Clone and install **[Pager's dotfiles][dotfiles]** (recommended) or [Docker for Mac][docker-mac].
 
-> **NOTE**: if you're not using the `dotfiles` repo, you might want to install 
+> **NOTE**: if you're not using the `dotfiles` repo, you might want to install
 > the following for shell completion.
 
 ```bash
@@ -42,25 +42,63 @@ docker-compose stop
 docker-compose rm -f
 ```
 
-### Linking containers
+### Sharing the network
 
-`docker-compose` defaults to a `compose_default` bridged network on your system, in order to link to these containers you can:
-
- - add `--net=compose_default` to the `docker run` command (fresh container)
- - run `docker network connect compose_default my-container` (existing container)
-
-See [this article][linking] for details.
-
-## Running Kong
-
-```bash
-docker-compose -f kong.yaml up
+The `docker-compose.yml` file creates a network called `cloudbuild` to mimic how cloudbuild works locally.
+All other services should have the following at the bottom of their `docker-compose.yml` files to hook
+into this shared docker network:
+```yaml
+networks:
+  default:
+    external:
+      name: cloudbuild
 ```
 
-Hit [http://localhost.me]() for the proxy,
-[localhost:8001](http://localhost:8001) for the admin API.
+### Destructive actions
+
+`docker-compose stop` by default is not a destructive action. It leaves the containers and their volumes
+intact, but stop the container. This means that the only resource being used is disk space. If you execute
+`docker-compose down` all coantiners and volumes will be destroyed and need to be rebuilt, which means
+your databases will revert to empty as well. `docker-compose rm` after a `stop` is the same as running `down`.
+
+## Kong
+
+Kong starts when you run `docker-compose up -d` with the rest of the services, and will bind to
+port `80` and `443` on localhost for the proxy listener, and the admin listener will bind to port `8001`.
+
+There is also a Kong admin UI (Konga) included that binds to `localhost:8002`. You will need to add a connection
+the first time you start it, and use the address of kong admin _internal_ to the docker network, meaning
+you will need to use `http://kong:8001` as the kong admin address in Konga.
+
+In order to generate a configuration for Kong, you will need to have the `pagerinc/charts` repo set up
+locally. Once you have `charts` set up locally, you can go to that repo and run
+`bash scripts/kong_template.sh -l -o kong.yaml` which will generate a `decK` config file with all of the
+ports and urls set to their localhost values. You should then be able to run `deck sync` (if you have installed `decK`)
+to sync the generated config to your local Kong instance.
+
+## Dnsmasq Setup
+
+We are using `dnsmasq` to run a local DNS server in order to answer the `pager.localhost` DNS requests. To
+install dnsmasq, run `bash setup-dnsmasq.sh` which will install and configure dnsmasq and the routing you need.
+
+After running the setup, you should be able to run `scutil --dns` and see a resolver for `localhost` listed. If
+you do not see a resolver for localhost listed, run `sudo vim /etc/resolver/localhost` and then just exit the
+file without making any changes. MacOS is a little weird in how it detects file changes in `/etc/resolver/` and
+opening and closing the file with `vim` triggers a swap file create/delete which tricks MacOS into seeing the changes.
+
+## HTTPS/TLS Support
+
+This repo has full support for running your services on HTTPS/TLS locally using the same subdomains that we use
+for our services in staging and production environments. In order to enable TLS support, run `docker-compose up -d`
+and then after that `cd` into the `tls` directory and run `bash generate-certs.sh`. This will generate a
+Certificate Authority and a wildcard certificate for `pager.localhost` and `*.pager.localhost` using SNI.
+
+After this, still in the `tls` directory, you can run `bash register-certs-with-kong.sh` to load the certificates
+into Kong and register them for use with `*.pager.localhost` domains.
+
+*NOTE:* Every time you run `deck sync` with Kong, it will wipe out the certs from the Kong DB. Simply re-run the
+`register-certs-with-kong.sh` script to re-add them.
 
 [compose-file]: https://docs.docker.com/compose/compose-file/
 [dotfiles]: https://github.com/pagerinc/dotfiles
 [docker-mac]: https://www.docker.com/products/docker#/mac
-[linking]: http://blog.csainty.com/2016/07/connecting-docker-containers.html
