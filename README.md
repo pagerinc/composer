@@ -72,7 +72,7 @@ you will need to use `http://kong:8001` as the kong admin address in Konga.
 
 In order to generate a configuration for Kong, you will need to have the `pagerinc/charts` repo set up
 locally. Once you have `charts` set up locally, you can go to that repo and run
-`bash scripts/kong_template.sh -l -o kong.yaml` which will generate a `decK` config file with all of the
+`bash scripts/kong_template.sh -l true -o kong.yaml` which will generate a `decK` config file with all of the
 ports and urls set to their localhost values. You should then be able to run `deck sync` (if you have installed `decK`)
 to sync the generated config to your local Kong instance.
 
