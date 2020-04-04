@@ -2,22 +2,22 @@ version: '3'
 
 services:
   redis:
-    image: redis:4-alpine
+    image: redis:4-alpine@sha256:18e31fe73a142c094fedbcdac27973233f82e5c9ef7b10386991deffd47caded
     ports:
       - "6379:6379"
   mongo:
-    image: mongo:3.6.9-stretch
+    image: mongo:3.6.9-stretch@sha256:8b3c1f484805b85ce4b539fc5d7cda8824fff6fb91431ca2f03525d73878ad9a
     ports:
       - "27017:27017"
   rabbitmq:
-    image: rabbitmq:3.7.8-management-alpine
+    image: rabbitmq:3.7.8-management-alpine@sha256:00a04a6f15b8dddf9ecf7620afa76d2851e1092dc268990990e7573a82f5d8dd
     ports:
       - "5672:5672"
       - "15672:15672"
     environment:
       RABBITMQ_DEFAULT_VHOST: db
   postgres:
-    image: postgres:9.6-alpine
+    image: postgres:9.6-alpine@sha256:605e911ed92f9e1c41b88bfa55828986e92c8a953703a45659aab04aafc3ed03
     ports:
       - "5432:5432"
     environment:
