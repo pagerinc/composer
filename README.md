@@ -76,6 +76,16 @@ locally. Once you have `charts` set up locally, you can go to that repo and run
 ports and urls set to their localhost values. You should then be able to run `deck sync` (if you have installed `decK`)
 to sync the generated config to your local Kong instance.
 
+### Installing `decK`
+
+Installing `decK` to automate syncing of Kong configs is very easy using Homebrew. Just run the following
+two lines in your shell and you will be good to go.
+
+```bash
+brew tap hbagdi/deck
+brew install deck
+```
+
 ## Dnsmasq Setup
 
 We are using `dnsmasq` to run a local DNS server in order to answer the `pager.localhost` DNS requests. To
