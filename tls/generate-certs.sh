@@ -17,8 +17,12 @@ openssl req \
     -key certs/ca.key \
     -out certs/ca.crt \
     -config ca.conf
-echo "Reqesting your password to add the generated CA as trusted"
-sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" certs/ca.crt
+if [ -x "$(command -v security)" ]; then
+    echo "Reqesting your password to add the generated CA as trusted"
+    sudo security add-trusted-cert -d -r trustRoot -k "/Library/Keychains/System.keychain" certs/ca.crt
+else
+    echo "You don't appear to be running MacOS. Please add certs/ca.crt to your trusted certificate authorities."
+fi
 fi
 
 echo "Cleaning any previously generated certificates..."
