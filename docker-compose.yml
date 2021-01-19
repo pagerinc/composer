@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   redis:
-    image: redis:4
+    image: redis:5-alpine@sha256:9e0926fe90cef2fc4e435fbcb63c273d34ac9b05de6545cb92d708ccdb7f823f
     ports:
       - "6379:6379"
 
@@ -12,7 +12,7 @@ services:
       - "27017:27017"
 
   rabbitmq:
-    image: rabbitmq:3.8.3-management
+    image: rabbitmq:3.8.9-management-alpine@sha256:d546527de969707e84a589aa927dbc40f1227f732b4e6501a314a07684ba4941
     ports:
       - "5672:5672"
       - "15672:15672"
@@ -20,7 +20,7 @@ services:
       RABBITMQ_DEFAULT_VHOST: db
 
   postgres:
-    image: postgres:11
+    image: postgres:12.5-alpine@sha256:ff96c87ca0040cee0decb8d1f4137eb62498ab060cadbb6b3e51f5193be552c7
     ports:
       - "5432:5432"
     environment:
