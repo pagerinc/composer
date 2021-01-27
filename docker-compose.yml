@@ -6,7 +6,7 @@ services:
     ports:
       - "6379:6379"
   mongo:
-    image: mongo:3.6.9-stretch@sha256:8b3c1f484805b85ce4b539fc5d7cda8824fff6fb91431ca2f03525d73878ad9a
+    image: mongo:3.6.9-stretch@sha256:c93e92e4b70d9ec78f1253a7f3f5df1ff074d04aa3d545a73ed508e74962ffaf
     ports:
       - "27017:27017"
   rabbitmq:
