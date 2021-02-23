@@ -2,7 +2,7 @@ version: '3'
 
 services:
   redis:
-    image: redis:5-alpine@sha256:24b1579f67592ef53e4ea471ddece28718a89992790e6fe1a65a51d3ad769c7f
+    image: redis:5-alpine@sha256:2f65d45ab080fd60884b744f305c476b76c1269749e9883e962fe1e06f7d8621
     ports:
       - "6379:6379"
   mongo:
