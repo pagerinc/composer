@@ -1,14 +1,16 @@
-version: '3'
+version: '3.7'
 
 services:
   redis:
     image: redis:5-alpine@sha256:6151b520d9ac29c1524d9637e0b3dc69cba7dbef27a427d6dba355652fff8306
     ports:
       - "6379:6379"
+
   mongo:
     image: mongo:3.6.9-stretch@sha256:c93e92e4b70d9ec78f1253a7f3f5df1ff074d04aa3d545a73ed508e74962ffaf
     ports:
       - "27017:27017"
+
   rabbitmq:
     image: rabbitmq:3.8.14-management-alpine@sha256:968e7329d1fe146d0d153cfc9227ec5a93f77f1b969fecf30b39ac2b7de57010
     ports:
@@ -16,6 +18,7 @@ services:
       - "15672:15672"
     environment:
       RABBITMQ_DEFAULT_VHOST: db
+
   postgres:
     image: postgres:12.6-alpine@sha256:af41889f0fa073328856551f1dc1df68b5a5b9540ddc4ab2b892c32843882028
     ports:
@@ -23,5 +26,70 @@ services:
     environment:
       LC_ALL: C.UTF-8
       POSTGRES_USER: admin
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: db
+
+  postgres-kong:
+    image: postgres:9.6
+    environment:
+      POSTGRES_USER: kong
+      POSTGRES_DB: kong
+      POSTGRES_PASSWORD: secret
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kong-migration:
+    image: kong:1.3.0
+    depends_on:
+      - postgres-kong
+    environment:
+      - KONG_DATABASE=postgres
+      - KONG_PG_HOST=postgres-kong
+      - KONG_PG_PASSWORD=secret
+    command: kong migrations bootstrap && kong migrations up
+    restart: on-failure
+
+  kong:
+    image: kong:1.3.0
+    depends_on:
+      - postgres-kong
+      - kong-migration
+    environment:
+      - KONG_DATABASE=postgres
+      - KONG_PG_HOST=postgres-kong
+      - KONG_PG_PASSWORD=secret
+      - KONG_PG_DATABASE=kong
+      - KONG_PROXY_ACCESS_LOG=/dev/stdout
+      - KONG_PROXY_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001
+    ports:
+      - "80:8000"
+      - "443:8443"
+      - "8001:8001"
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8000 || exit 1"]
+      interval: 5s
+      retries: 10
+
+  kong-ui:
+    image: pantsel/konga
+    depends_on:
+      - postgres-kong
+      - kong
+    environment:
+      - DB_ADAPTER=postgres
+      - DB_URI=postgres://admin:postgres@postgres/kong_ui
+      - HOST=0.0.0.0
+      - NODE_ENV=development
+      - NO_AUTH=true
+      - PORT=8000
+    ports:
+      - "8002:8000"
+
+networks:
+  default:
+    name: cloudbuild
