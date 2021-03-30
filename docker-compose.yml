@@ -42,7 +42,7 @@ services:
       retries: 5
 
   kong-migration:
-    image: kong:1.5.1@sha256:d394801bcfdfd7ffb00416baab1d5a0152a698320a72c3ad5eccb8b78b3767eb
+    image: kong:2.3.3@sha256:0f263f7cd15447fbd6a6c8d6ad4ec0e9965e01b703ed79a3fd7bed15945ce072
     depends_on:
       - postgres-kong
     environment:
@@ -53,7 +53,7 @@ services:
     restart: on-failure
 
   kong:
-    image: kong:1.5.1@sha256:d394801bcfdfd7ffb00416baab1d5a0152a698320a72c3ad5eccb8b78b3767eb
+    image: kong:2.3.3@sha256:0f263f7cd15447fbd6a6c8d6ad4ec0e9965e01b703ed79a3fd7bed15945ce072
     depends_on:
       - postgres-kong
       - kong-migration
