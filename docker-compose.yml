@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   redis:
-    image: redis:5-alpine@sha256:b0bfe200ddc7cfcd2d414351f470e3b19ce03c49ddb94a28877ed77f9539376c
+    image: redis:5-alpine@sha256:bc9427184ef4a6c130043827e6e1318336b23998efd2c14a819f3c7adc94a95a
     ports:
       - "6379:6379"
 
