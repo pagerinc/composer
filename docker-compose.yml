@@ -20,7 +20,7 @@ services:
       RABBITMQ_DEFAULT_VHOST: db
 
   postgres:
-    image: postgres:12.8-alpine@sha256:6f03854b0a6223f3b5efb98fe8a4d08af758d0625a6134dcae12c0a651f9e526
+    image: postgres:12.9-alpine@sha256:3f02e811add33564ccaa0c5253a4f0a4932c633a95db7aa9b3598346533d17fb
     ports:
       - "5432:5432"
     environment:
@@ -30,7 +30,7 @@ services:
       POSTGRES_DB: db
 
   postgres-kong:
-    image: postgres:12.8@sha256:bb57f984d83d9aba54dfd167952ec57e74d9656bd72ffc4c35ced723990c91bd
+    image: postgres:12.9@sha256:62091d5d51a85ed61392f029179ada6fba97c2b46110dc056305e2409bcd5478
     environment:
       POSTGRES_USER: kong
       POSTGRES_DB: kong
