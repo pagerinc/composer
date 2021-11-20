@@ -12,7 +12,7 @@ services:
       - "27017:27017"
 
   rabbitmq:
-    image: rabbitmq:3.9.9-management-alpine@sha256:259563015f404cce8629a6d9a9d5246ff4e14b82f5dac94e0df5d3c976bdb091
+    image: rabbitmq:3.9.10-management-alpine@sha256:24ddf848cddcb8e3e2c9ea7db7d5cb80dbbcf87ab71db8169a1df294e33ae56e
     ports:
       - "5672:5672"
       - "15672:15672"
