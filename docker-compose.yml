@@ -30,7 +30,7 @@ services:
       POSTGRES_DB: db
 
   postgres-kong:
-    image: postgres:12.10@sha256:505d023f030cdea84a42d580c2a4a0e17bbb3e91c30b2aea9c02f2dfb10325ba
+    image: postgres:12.10@sha256:f94f4b7ac0ccd4d1b079e7035c21987712d4ee7f650f32a7049e38f4e46aca71
     environment:
       POSTGRES_USER: kong
       POSTGRES_DB: kong
