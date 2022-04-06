@@ -20,7 +20,7 @@ services:
       RABBITMQ_DEFAULT_VHOST: db
 
   postgres:
-    image: postgres:12.10-alpine@sha256:b64393668ec768f2e3f804eda1270464aad83982a4feaf02021932de9a2fe34f
+    image: postgres:12.10-alpine@sha256:cda55baf3fddc0718a6ccc84d2e5c6d2ea5f3b29d5b5b801a546631163201d49
     ports:
       - "5432:5432"
     environment:
