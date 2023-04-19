@@ -21,16 +21,18 @@ services:
 
   postgres:
     image: postgres:12.10-alpine@sha256:cda55baf3fddc0718a6ccc84d2e5c6d2ea5f3b29d5b5b801a546631163201d49
+    user: postgres
     ports:
       - "5432:5432"
     environment:
       LC_ALL: C.UTF-8
       POSTGRES_USER: admin
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: pag3rR0cks
       POSTGRES_DB: db
 
   postgres-kong:
     image: postgres:12.10@sha256:dccefcef098597b666c0a7012ffdb0187a84fd48868c1165cb72d031f0e36e7c
+    user: postgres
     environment:
       POSTGRES_USER: kong
       POSTGRES_DB: kong
